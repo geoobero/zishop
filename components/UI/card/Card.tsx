@@ -20,13 +20,17 @@ const Card: React.FC<Props> = ({ product }) => {
         <a className="flex md:items-center md:flex-col relative w-full">
           <div className="w-1/2 md:w-full relative bg-slate-400/30 px-1 md:px-6 py-2 rounded-bl-xl rounded-tl-xl md:rounded-tr-xl md:rounded-bl-none rtl:order-2 rtl:md:order-none flex flex-col justify-between items-center">
             <div className="flex items-center h-full">
-              <Image
-                src={urlFor(product?.image[0]).url()}
-                width={280}
-                height={300}
-                alt={product.name}
-                className=" drop-shadow-xl object-contain hover:scale-110 transition-transform duration-300 ease-in-out !py-2 "
-              />
+              {product?.image[0] ? (
+                <Image
+                  src={urlFor(product?.image[0]).url()}
+                  width={280}
+                  height={300}
+                  alt={product.name}
+                  className=" drop-shadow-xl object-contain hover:scale-110 transition-transform duration-300 ease-in-out !py-2 "
+                />
+              ) : (
+                <span className="text-palette-muted text-sm">No image</span>
+              )}
             </div>
             {product?.discount ? (
               <span className="w-8 sm:w-auto block absolute -top-2 -right-2">

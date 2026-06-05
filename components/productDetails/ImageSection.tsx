@@ -13,6 +13,16 @@ const ImageSection: React.FC<Props> = ({ imgArray, product }) => {
   function onClickHandler(index: number) {
     setSelectedImg(index);
   }
+  if (!imgArray || imgArray.length === 0) {
+    return (
+      <div className="flex items-start rounded-lg w-full md:w-auto">
+        <ProductPageActions product={product} />
+        <div className="flex items-center justify-center w-[450px] h-[330px] bg-palette-card rounded-lg">
+          <span className="text-palette-muted">No image available</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="flex items-start rounded-lg w-full md:w-auto">
       <ProductPageActions product={product} />

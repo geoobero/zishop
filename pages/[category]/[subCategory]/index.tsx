@@ -23,12 +23,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
     "subCategory":category[1],
   }`;
   const products = await client.fetch(query);
-  const paths = products.map((product: ISubCategoryPathsParams) => ({
-    params: {
-      category: product.category.toString(),
-      subCategory: product.subCategory.toString(),
-    },
-  }));
+  const paths = products
+    .filter((product: ISubCategoryPathsParams) => product.subCategory)
+    .map((product: ISubCategoryPathsParams) => ({
+      params: {
+        category: product.category.toString(),
+        subCategory: product.subCategory.toString(),
+      },
+    }));
   return {
     fallback: "blocking",
     paths,

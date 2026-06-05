@@ -48,13 +48,17 @@ const CartItem: React.FC<Props> = ({ product }) => {
         >
           <a className="flex flex-wrap sm:flex-nowrap justify-center items-center flex-grow">
             <div className="sm:min-w-[100px] md:min-w-[130px]">
-              <Image
-                src={urlFor(product?.image[0]).url()}
-                width={200}
-                height={200}
-                alt={product.name}
-                className="object-contain"
-              />
+              {product?.image[0] ? (
+                <Image
+                  src={urlFor(product?.image[0]).url()}
+                  width={200}
+                  height={200}
+                  alt={product.name}
+                  className="object-contain"
+                />
+              ) : (
+                <span className="text-palette-muted text-sm">No image</span>
+              )}
             </div>
             <div
               className="flex-grow text-sm font-normal mb-2 sm:mb-0 mx-2 w-full"
